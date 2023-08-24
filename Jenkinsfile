@@ -20,6 +20,7 @@ pipeline{
        stage('deploy'){
             steps{
 		sh "mvn package"
+		sh "java -jar target/hello-maven-1.0.jar"
             }
         }
     }
