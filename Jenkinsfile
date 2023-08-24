@@ -22,6 +22,7 @@ pipeline{
         }
        stage('deploy'){
             steps{
+		echo 'test'
 		//sh "docker run hello-maven-1.0.jar"
             }
         }
