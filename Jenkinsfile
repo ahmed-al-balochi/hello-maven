@@ -21,7 +21,7 @@ pipeline{
         }
        stage('deploy'){
             steps{
-        	sh 'docker login -u albalochi -p dckr_pat_67SmiDCWqbaxRevL4wVNYqmVHc8'
+        	sh 'docker login -u albalochi -p dockerhub_pass'
         	sh 'docker push albalochi/hello-maven-1.0.jar:v1'
 		sh 'docker logout'
 		sh "docker run hello-maven-1.0.jar"
