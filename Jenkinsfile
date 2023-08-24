@@ -6,20 +6,20 @@ pipeline{
     }
 	
     stages{
-       stage('prep'){
+       stage('test'){
             steps{
-		echo "prep"
-		sh "mvn validate"
+		sh "mvn clean"
+		sh "mvn test"
             }
         }
        stage('build'){
             steps{
-		echo "build"
+		sh "mvn compile"
             }
         }
        stage('deploy'){
             steps{
-		echo "deploy"
+		sh "mvn package"
             }
         }
     }
