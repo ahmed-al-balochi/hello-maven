@@ -4,11 +4,7 @@ pipeline{
     tools{
       maven 'Maven'
     }
-    environment {
-        registry = "albalochi/hello-maven"
-        registryCredential = 'dockerhub_credentials'
-        dockerImage = ''
-    }
+
     stages{
        stage('test'){
             steps{
@@ -20,15 +16,14 @@ pipeline{
             steps{
 		sh "mvn package"
            	sh 'docker build -t hello-maven-1.0.jar .'
+		sh 'docker tag hello-maven-1.0.jar:v1 albalochi/hello-maven-1.0.jar:v1'
             }
         }
        stage('deploy'){
             steps{
-	    	script {
-            		docker.withRegistry( '', registryCredential ) {
-            		dockerImage.push()
-            			}
-	    	}
+        	sh 'docker login -u albalochi -p dckr_pat_67SmiDCWqbaxRevL4wVNYqmVHc8'
+        	sh 'docker push albalochi/hello-maven-1.0.jar:v1'
+		sh 'docker logout'
 		sh "docker run hello-maven-1.0.jar"
             }
         }
