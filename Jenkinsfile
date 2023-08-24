@@ -14,13 +14,13 @@ pipeline{
         }
        stage('build'){
             steps{
-		sh "mvn compile"
+		sh "mvn package"
+		sh "docker build -t hello-maven-1.0.jar ."
             }
         }
        stage('deploy'){
             steps{
-		sh "mvn package"
-		sh "java -jar target/hello-maven-1.0.jar"
+		sh "docker run hello-maven-1.0.jar"
             }
         }
     }
