@@ -17,15 +17,12 @@ pipeline{
        stage('build'){
             steps{
 		sh "mvn package"
-		script{
-           	sh "docker build -t hello-maven-1.0.jar ."
-		}
+           	sh 'docker build -t hello-maven-1.0.jar .'
             }
         }
        stage('deploy'){
             steps{
-		echo 'test'
-		//sh "docker run hello-maven-1.0.jar"
+		sh "docker run hello-maven-1.0.jar"
             }
         }
     }
