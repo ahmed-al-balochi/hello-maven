@@ -9,9 +9,6 @@
   <version>1.0</version>
   <name>hello-maven</name>
   <url>https://ucsb-cs56-pconrad.github.io/hello-maven</url>
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
   
   <dependencies>
 
