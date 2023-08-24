@@ -6,6 +6,8 @@ pipeline{
     }
     environment {
         registry = "albalochi/hello-maven"
+        registryCredential = 'dockerhub_credentials'
+        dockerImage = ''
     }
     stages{
        stage('test'){
@@ -22,6 +24,11 @@ pipeline{
         }
        stage('deploy'){
             steps{
+	    	script {
+            		docker.withRegistry( '', registryCredential ) {
+            		dockerImage.push()
+            			}
+	    	}
 		sh "docker run hello-maven-1.0.jar"
             }
         }
