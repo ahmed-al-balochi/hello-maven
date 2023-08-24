@@ -4,7 +4,10 @@ pipeline{
     tools{
       maven 'Maven'
     }
-
+    environment{
+	dockerhubToken = credentials('dockerhub_pass')
+    }
+	
     stages{
        stage('test'){
             steps{
@@ -21,7 +24,7 @@ pipeline{
         }
        stage('deploy'){
             steps{
-        	sh 'docker login -u albalochi -p dockerhub_pass'
+        	sh "docker login -u albalochi -p ${dockerhubToken}"
         	sh 'docker push albalochi/hello-maven-1.0.jar:v1'
 		sh 'docker logout'
 		sh "docker run hello-maven-1.0.jar"
