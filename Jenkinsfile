@@ -7,6 +7,7 @@ pipeline{
     environment {
         registry = "albalochi/hello-maven"
         dockerImage = ''
+    }
     stages{
        stage('test'){
             steps{
