@@ -6,7 +6,6 @@ pipeline{
     }
     environment {
         registry = "albalochi/hello-maven"
-        dockerImage = ''
     }
     stages{
        stage('test'){
@@ -19,7 +18,7 @@ pipeline{
             steps{
 		sh "mvn package"
 		script{
-           	dockerImage = docker.build registry
+           	sh "docker build -t hello-maven-1.0.jar ."
 		}
             }
         }
